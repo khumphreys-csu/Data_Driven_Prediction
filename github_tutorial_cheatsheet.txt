@@ -1,0 +1,35 @@
+# creates a branch off of main for you to make changes to files on
+# branch naming convention will have hyphens in between words
+git branch <your-branch-name>
+# "checking out" means setting the local branch you are working on
+git checkout <your-branch-name>
+# alternatively, make a new branch and checkout at the same time
+git checkout -b <your-branch-name>
+# change the name of the branch after it's been created and checked out
+git branch -m <new-branch-name>
+# lets you check a number of things...
+# - which branch is checked out
+# - which files are being tracked/untracked
+git status
+# at this point you'll make changes to the files
+# add will add the file you want to be tracked
+# if you want all the files to be tracked, put --all instead of the file name
+git add <file_name.py>
+# saves your changes to your local branch
+git commit -m "A message title of what you did in this commit"
+# uploads changes on the locally created branch to the cloud
+# can be setup to automatically set the upstream branch with just "git push"
+git push --set-upstream origin <your-branch-name>
+# move over to a web browser on your github repository page and manage the pull request
+# click “Compare & pull request”
+# add a description to your pull request if you like, and click “Create pull request”
+# click “Merge pull request”
+# !! Notice - you will not be the one doing this step if you are working on a project with other people
+# click “Confirm merge”
+# if everything you set to do in the created branch has been finished, click “Delete Branch”
+# return to vs code or whereever you're working
+# resets your branch back to main
+git checkout main
+# updates your local branch to be up to date with what has been merged in the cloud
+git pull origin main
+# now do it again...forever
