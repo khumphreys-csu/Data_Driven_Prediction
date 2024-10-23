@@ -9,18 +9,18 @@ For the following variables are downloaded:
 
 Modify the settings below, then run with:
 
-python download_era5_pl.py
+python /Users/kathum/Classes/fall_2024/Data_driven\ Analysis/Data_Driven_Prediction/download_era5_total_precipitation.py
 """
 from pathlib import Path
 
 import cdsapi
 import pandas as pd
 
-#target_dir = "/Volumes/keys-scratch/kathum/ERA5_testing_download/" #where to save the data
-target_dir = "/Volumes/LaCie_10TB_Keys_KH/raw_era5/ERA5_testing_download_oct24/" #where to save the data
+target_dir = "/Volumes/keys-scratch/kathum/ERA5_testing_download/" #where to save the data
+#target_dir = "/Volumes/LaCie_10TB_Keys_KH/raw_era5/ERA5_testing_download_oct24/" #where to save the data
 skip_exist = True
 
-datelist = pd.date_range("20200101", "20200101")
+datelist = pd.date_range("20000101", "20001231") #YYYYMMDD
 
 area = None  # None for global, or [N, W, S, E]
 grid = [0.25, 0.25]
@@ -52,11 +52,6 @@ times = [
     "23:00",
 ]
 
-levels = [
-]
-
-pl_variables = {
-}
 
 surface_variables = {
     "tp": "total_precipitation"
@@ -89,7 +84,7 @@ for date in datelist:
                         "variable": long_name,
                         "date": date.strftime("%Y-%m-%d"),
                         "time": times,
-                        "area": area,
+                        #"area": area,
                         "grid": grid,
                         "format": "netcdf",
                     },
@@ -105,35 +100,4 @@ for date in datelist:
                     ""
                 )
 
-    # Download 3d variables
-    for variable, long_name in pl_variables.items():
-        outfile = f"ERA5_{date.strftime('%Y-%m-%d')}_pl_{variable}.nc"
-        if (outfolder / outfile).exists() and skip_exist:
-            print(
-                f"{outfolder / outfile} already exists, skipping. Set skip_exist = False to force re-download"
-            )
-        else:
-            try:
-                c.retrieve(
-                    "reanalysis-era5-pressure-levels",
-                    {
-                        "time": times,
-                        "date": date.strftime("%Y-%m-%d"),
-                        "pressure_level": levels,
-                        "variable": long_name,
-                        "area": area,
-                        "grid": grid,
-                        "product_type": "reanalysis",
-                        "format": "netcdf",
-                    },
-                    str(outfolder / outfile),
-                )
-            except Exception as e:
-                print(e)
-                print(
-                    ""
-                    f"Request failed for {variable}, {date}. Proceeding. You can"
-                    " run the code again and set 'skip_exist' to true to avoid"
-                    " duplicate downloads."
-                    ""
-                )
+   
