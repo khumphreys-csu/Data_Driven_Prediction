@@ -16,7 +16,8 @@ from pathlib import Path
 import cdsapi
 import pandas as pd
 
-target_dir = "/Volumes/keys-scratch/kathum/ERA5_testing_download/" #where to save the data
+#target_dir = "/Volumes/keys-scratch/kathum/ERA5_testing_download/" #where to save the data
+target_dir = "/Volumes/LaCie_10TB_Keys_KH/raw_era5/ERA5_testing_download_oct24/" #where to save the data
 skip_exist = True
 
 datelist = pd.date_range("20200101", "20200101")
