@@ -16,7 +16,7 @@ from pathlib import Path
 import cdsapi
 import pandas as pd
 
-target_dir = "/Volumes/LaCie_10TB_Keys_KH/raw_era5/test_API"
+target_dir = "/Volumes/keys-scratch/kathum/ERA5_testing_download/" #where to save the data
 skip_exist = True
 
 datelist = pd.date_range("20200101", "20200101")
@@ -52,42 +52,13 @@ times = [
 ]
 
 levels = [
-    "100",
-    "200",
-    "300",
-    "400",
-    "500",
-    "550",
-    "600",
-    "650",
-    "700",
-    "750",
-    "775",
-    "800",
-    "825",
-    "850",
-    "875",
-    "900",
-    "925",
-    "950",
-    "975",
-    "1000",
 ]
 
 pl_variables = {
-    "q": "specific_humidity",
-    "u": "u_component_of_wind",
-    "v": "v_component_of_wind",
 }
 
 surface_variables = {
-    "tp": "total_precipitation",
-    "e": "evaporation",
-    "sp": "surface_pressure",
-    "d2m": "2m_dewpoint_temperature",
-    "u10": "10m_u_component_of_wind",
-    "v10": "10m_v_component_of_wind",
-    "tcw": "total_column_water",
+    "tp": "total_precipitation"
 }
 
 ## The part below should not have to be modified
